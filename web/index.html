@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="app-token" content="__APP_TOKEN__">
+<title>EPROC · Peticionamento</title>
+<link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header><div class="brand"><span class="brand-icon">e</span><div><strong>EPROC · Peticionamento</strong><small>Tribunal de Justiça de São Paulo · 2º grau</small></div></div><span class="environment"><span></span> Homologação</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">PAINEL DE OPERAÇÃO</p><h1>Seu lote, do início ao protocolo.</h1><p>Prepare a planilha, acompanhe cada etapa e confira os resultados.</p></div><a class="template-link" href="/modelo.xlsx" download="modelo_peticionamento_eproc_2g.xlsx">↓ Baixar planilha modelo</a></div>
+<div id="notice" class="notice" role="alert" hidden></div>
+<div class="workspace">
+<section class="card setup" aria-labelledby="setup-title">
+<div class="section-heading"><span class="step">1</span><h2 id="setup-title">Preparar execução</h2></div>
+<form id="setup-form" autocomplete="off">
+<label for="path">Planilha de trabalho</label><div class="file-field"><input id="path" name="path" type="text" placeholder="Selecione ou informe o caminho do Excel" required><button id="choose" type="button" class="secondary">Escolher</button></div>
+<p class="hint">Use uma cópia do modelo e mantenha a planilha fechada no Excel.</p>
+<button id="validate" type="button" class="secondary full">Validar planilha</button>
+<label for="limit">Limite de registros neste lote</label><input id="limit" type="number" min="1" step="1" value="50" required>
+<p class="hint">Comece com 50 e aumente quando desejar. Registros com erro também contam para o limite.</p>
+<label class="diagnostic-option"><input id="diagnostic" type="checkbox"> Manter navegador aberto após erro (limite 1)</label><p class="hint">Permite observar a tela do EPROC para diagnosticar uma falha.</p>
+<div class="divider"></div>
+<label for="user">Usuário EPROC</label><input id="user" type="text" autocomplete="off" placeholder="Seu usuário de acesso" required>
+<label for="password">Senha</label><input id="password" type="password" autocomplete="off" required><p class="hint">A senha é usada nesta execução e não é salva.</p>
+<label for="mode">Confirmação de ajuizamento</label><select id="mode"><option value="automatic" selected>Automática para todo o lote</option><option value="manual">Confirmar cada registro</option></select>
+<p id="mode-hint" class="hint">Cada registro será ajuizado automaticamente, sem uma confirmação individual.</p>
+<button id="start" type="submit" class="primary full">Iniciar lote <span>→</span></button>
+</form>
+<div class="rules"><strong>Configuração do lote</strong><p>Direito Privado · Petição Inicial<br>Uma parte por polo · Sem plantão</p></div>
+</section>
+<section class="monitor" aria-labelledby="monitor-title">
+<div class="card execution">
+<div class="section-heading"><span class="step">2</span><h2 id="monitor-title">Acompanhar execução</h2><span id="phase" class="phase">Aguardando planilha</span></div>
+<div class="metrics"><div><span>Registros neste lote</span><strong id="total">—</strong></div><div><span>Concluídos neste lote</span><strong id="completed">0</strong></div><div><span>Erros / verificar</span><strong id="errors">0</strong></div></div>
+<div class="progress-label"><span id="progress-label">Pronto para começar</span><span id="progress-count"></span></div><progress id="progress" value="0" max="1" aria-label="Progresso do lote"></progress>
+<div class="activity"><div class="activity-icon" id="activity-icon">○</div><div><strong id="stage">Selecione uma planilha</strong><p id="message">Os registros e resultados aparecerão aqui.</p></div><button id="stop" type="button" class="stop" disabled>Interromper execução</button></div>
+<p class="hint">A interrupção conclui o registro em andamento. Se estiver aguardando confirmação, encerra sem ajuizar.</p>
+</div>
+<section id="confirmation" class="card confirmation" hidden aria-live="polite"><div><p class="eyebrow">AGUARDANDO SUA CONFIRMAÇÃO</p><h2 id="confirmation-title">Confirmar ajuizamento</h2><p>Confira o resumo na janela do EPROC. Ao confirmar, o registro será ajuizado no ambiente de homologação.</p></div><button id="confirm" type="button" class="primary">Confirmar ajuizamento</button></section>
+<div class="card results"><div class="section-heading"><h2>Registros e resultados</h2><span id="row-count" class="muted">0 registros</span></div><div class="table-wrap"><table><thead><tr><th>Registro / classe</th><th>Status</th><th>Processo / magistrado</th><th>Observações</th></tr></thead><tbody id="rows"><tr><td colspan="4" class="empty">Valide uma planilha para visualizar seus registros.</td></tr></tbody></table></div></div>
+<details class="card log"><summary>Atividade do lote</summary><ol id="logs"><li>Nenhuma atividade registrada.</li></ol></details>
+</section>
+</div>
+<footer>Os resultados são gravados na planilha selecionada. Registros com protocolo incerto exigem conferência antes de uma nova tentativa. <button id="exit" type="button" class="secondary">Encerrar programa</button></footer>
+</main>
+</body></html>

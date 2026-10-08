@@ -1,0 +1,46 @@
+# Ambientes, caches e configurações locais
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+
+# Dados operacionais: somente o modelo vazio pode ser versionado
+*.xlsx
+!modelo_peticionamento_eproc_2g.xlsx
+*.xls
+*.csv
+*.jsonl
+*.pdf
+*.log
+~$*
+saida/
+dados/
+planllhas/
+planilhas/
+backups/
+.revisao_planilha/
+txt/
+
+# Binários, entregas e arquivos de construção
+build/
+dist/
+.build-browsers/
+*.spec
+*.exe
+*.dll
+*.zip
+entrega_*/
+robo_peticionamento_eproc_2g_preparacao_exe/
+compartilhamento_github/
+abrir_ultima_versao*.bat
+manifesto.json
+LEIA-ME*.txt
+README-*.md
